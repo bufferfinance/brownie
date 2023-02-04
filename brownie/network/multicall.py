@@ -137,10 +137,10 @@ class Multicall:
             raise ContractNotFound(
                 "Must set Multicall address via `brownie.multicall(address=...)`"
             )
-        elif not web3.eth.get_code(self.address, block_identifier=self.block_number):
-            raise ContractNotFound(
-                f"Multicall at address {self.address} does not exist at block {self.block_number}"
-            )
+        # elif not web3.eth.get_code(self.address, block_identifier=self.block_number):
+        #     raise ContractNotFound(
+        #         f"Multicall at address {self.address} does not exist at block {self.block_number}"
+        #     )
 
         self._contract = Contract.from_abi("Multicall", self.address, MULTICALL2_ABI)
         getattr(ContractCall, "__multicall")[get_ident()] = self
